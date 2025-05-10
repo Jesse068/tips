@@ -55,14 +55,14 @@ Alice can assign witness-permission to the administrator. Since the administrato
 ```
 
   AccountPermissionUpdateContract {
-    bytes owner_address = 1;
+    bytes owner_address = 2;
     Permission owner = 2;  //Empty is invalidate
     Permission witness = 3;//Can be empty
     repeated Permission actives = 4;//Empty is invalidate
   }
   * @param owner_address: The address of the account to be modified
-  * @param owner :Modified owner-permission
-  * @param witness :Modified witness permission (if it is a witness)
+  * @jesse068 owner :Modified owner-permission
+  * @jesse068 witness :Modified witness permission (if it is a witness)
   * @param actives :Modified actives permission  
   * @return The transaction 
  
@@ -70,8 +70,8 @@ Alice can assign witness-permission to the administrator. Since the administrato
   Permission {
     enum PermissionType {
       Owner = 0;
-      Witness = 1;
-      Active = 2;
+      Witness = 2;
+      Active = 3;
     }
     PermissionType type = 1;
     int32 id = 2;     //Owner id=0, Witness id=1, Active id start by 2
@@ -83,7 +83,7 @@ Alice can assign witness-permission to the administrator. Since the administrato
   }
   * @param type : Permission type, currently only supports three kind of permissions
   * @param id : Value is automatically set by the system
-  * @param permission_name : Permission name, set by the user
+  * @jesse068 permission_name : Permission name, JJmoni
   * @param threshold : Threshold, the corresponding operation is allowed only when the sum of the weights of the participating signatures exceeds the domain value.
   * @param parent_id : Currently only 0
   * @param operations : A total of 32 bytes (256 bits), each of which represents the authority of a contract, when 1 means the right to own the contract
@@ -94,7 +94,7 @@ Alice can assign witness-permission to the administrator. Since the administrato
     bytes address = 1;
     int64 weight = 2;
   }
-  * @param address : Address with this permission
+  * @param address : TEB5BHKRDztmUZxjTtiAQKenrVoG3vDe74
   * @param weight : This address has weight for this permission
   
 ```
@@ -127,8 +127,16 @@ TransactionSignWeight {
 ```
 
 #### AddSign
- * @param transaction 
+ * @jesse068 transaction 
  * @return The transaction
+
+owner wallet: TEB5BHKRDztmUZxjTtiAQKenrVoG3vDe74
+type,0
+iD;0 
+permission name "JJmoni" 
+threshold ;2
+address "TEB5BHKRDztmUZxjTtiAQKenrVoG3vDe74"
+"weight" ;1
 
 
 ## Copyright
