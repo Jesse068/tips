@@ -54,16 +54,16 @@ Alice can assign witness-permission to the administrator. Since the administrato
 #### AccountPermissionUpdate
 ```
 
-  AccountPermissionUpdateContract {
-    bytes owner_address = 1;
-    Permission owner = 2;  //Empty is invalidate
-    Permission witness = 3;//Can be empty
-    repeated Permission actives = 4;//Empty is invalidate
-  }
-  * @param owner_address: The address of the account to be modified
-  * @param owner :Modified owner-permission
-  * @param witness :Modified witness permission (if it is a witness)
-  * @param actives :Modified actives permission  
+  message Account { 
+   ... 
+   Permission owner_permission = 3;
+   Permission witness_permission = 8;
+   repeated Permission active_permission = 5;
+ 
+*  @jesse068  owner_address:TEB5BHKRDztmUZxjTtiAQKenrVoG3vDe74
+  * @jesse068 owner :Modified owner-permission
+  * @jesse068 witness :Modified witness permission (if it is a witness)
+  * @jesse068 actives :Modified actives permission  
   * @return The transaction 
  
  
@@ -81,25 +81,25 @@ Alice can assign witness-permission to the administrator. Since the administrato
     bytes operations = 6;   //1 bit 1 contract
     repeated Key keys = 7;
   }
-  * @param type : Permission type, currently only supports three kind of permissions
-  * @param id : Value is automatically set by the system
-  * @param permission_name : Permission name, set by the user
-  * @param threshold : Threshold, the corresponding operation is allowed only when the sum of the weights of the participating signatures exceeds the domain value.
-  * @param parent_id : Currently only 0
-  * @param operations : A total of 32 bytes (256 bits), each of which represents the authority of a contract, when 1 means the right to own the contract
-  * @param keys : The address and weight that jointly own the permission can be up to 5 keys.
+  * @jesse068 type : Permission type,0 
+  * @jesse068 id : Value is automatically set by the system
+  * @jesse068 permission_name : Permission name, JJmoni
+  * @jesse068 threshold : Threshold, the corresponding operation is allowed only when the sum of the weights of the participating signatures exceeds the domain value.
+  * @jesse068 parent_id : Currently only 0
+  * @jesse068 operations : A total of 32 bytes (256 bits), each of which represents the authority of a contract, when 1 means the right to own the contract
+  * @jesse068 keys : The address and weight that jointly own the permission can be up to 5 keys.
   
   
   Key {
     bytes address = 1;
     int64 weight = 2;
   }
-  * @param address : Address with this permission
-  * @param weight : This address has weight for this permission
+  * @jesse068 address : Address with this permission
+  * @jesse068 weight : This address has weight for this permission
   
 ```
 #### GetTransactionSignWeight
- * @param transaction 
+ * @jesse068 transaction 
  * @return The transaction sign weight
  
 ```
@@ -127,9 +127,54 @@ TransactionSignWeight {
 ```
 
 #### AddSign
- * @param transaction 
+ * @jesse068 transaction 
  * @return The transaction
 
+http://{{host}}:{{port}}/wallet/accountpermissionupdate
+
+
+{
+  "owner_address": "0x5ffE32cc1a0206a34537fa98933D765306856D24",
+  "@jesse068 owner": {
+    "type": 0,
+    "@jesse068 permission_name": "JJmoni",
+    "threshold": 2,
+    "keys": [{
+        "address": "0x5ffE32cc1a0206a34537fa98933D765306856D24",
+        "weight": 1
+      },
+      {
+        "address": "0x5ffE32cc1a0206a34537fa98933D765306856D24",
+        "weight": 1
+      },
+      {
+        "address": "0x5ffE32cc1a0206a34537fa98933D765306856D24",
+        "weight": 1
+      }
+    ]
+  },
+  "@jesse068 actives": [{
+    "type": 2,
+    "@jesse068 permission_name": "JJmoni",
+    "threshold": 3,
+    "operations": "7fff1fc0037e0000000000000000000000000000000000000000000000000000",
+    "keys": [{
+        "address": "0x5ffE32cc1a0206a34537fa98933D765306856D24",
+        "weight": 1
+      },
+      {
+        "address": "0x5ffE32cc1a0206a34537fa98933D765306856D24",
+        "weight": 1
+      },
+      {
+        "address": "0x5ffE32cc1a0206a34537fa98933D765306856D24",
+        "weight": 1
+      }
+    ]
+  }]
+}
+
+// For the definition and limitations of the parameter fields, please see Structure Description.
 
 ## Copyright
 
